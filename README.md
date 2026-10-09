@@ -1,6 +1,6 @@
-# Gig Task Management App
+# TuList
 
-A Flutter task management application designed for gig workers to track shifts, client gigs, and prioritize tasks with offline persistence and cloud synchronization.
+A modern Flutter task management application featuring real-time Cloud Firestore synchronization, Firebase Authentication with email verification, offline caching, and intuitive task prioritization.
 
 ---
 
@@ -21,32 +21,15 @@ A Flutter task management application designed for gig workers to track shifts, 
 
 ```
 lib/
-├── firebase_options.dart
-├── main.dart
-├── models/
-│   └── task_model.dart
-├── providers/
-│   ├── auth_provider.dart
-│   └── task_provider.dart
-├── screens/
-│   ├── home_screen.dart
-│   ├── login_screen.dart
-│   ├── onboarding_screen.dart
-│   ├── signup_screen.dart
-│   └── task_form_screen.dart
-├── services/
-│   ├── auth_service.dart
-│   └── task_service.dart
-├── theme/
-│   └── app_theme.dart
-├── utils/
-│   ├── date_helpers.dart
-│   └── validators.dart
-└── widgets/
-    ├── auth_text_field.dart
-    ├── filter_bar.dart
-    ├── priority_chip.dart
-    └── task_card.dart
+├── models/               # Data structures and Firestore serialization models
+├── providers/            # State management for authentication and tasks
+├── screens/              # UI screens and primary navigation flows
+├── services/             # Backend communication with Firebase and storage
+├── theme/                # Color palette, typography, and visual styling
+├── utils/                # Helper functions, date formatters, and validators
+├── widgets/              # Reusable UI components and custom dialogs
+├── firebase_options.dart # Platform-specific Firebase configuration and credentials
+└── main.dart             # Application entry point and root providers
 ```
 
 ---
@@ -58,7 +41,13 @@ lib/
 - Dart SDK installed
 - Android SDK (or Xcode for iOS)
 
-### 2. Install Dependencies
+### 2. Environment Configuration
+Copy `.env.example` to `.env` and fill in your Firebase credentials:
+```bash
+cp .env.example .env
+```
+
+### 3. Install Dependencies
 ```bash
 flutter pub get
 ```
