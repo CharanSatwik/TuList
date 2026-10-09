@@ -1,3 +1,6 @@
+### Please find the apk file in the release section.
+
+
 # TuList
 
 TuList is a clean, modern task management mobile app built with Flutter and Firebase. It helps users organize daily tasks, set priorities, and keep everything synchronized across devices in real time with offline support.
