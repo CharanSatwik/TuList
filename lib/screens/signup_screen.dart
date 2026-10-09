@@ -1,16 +1,18 @@
 // File: lib/screens/signup_screen.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
 import '../utils/validators.dart';
+import '../services/preferences_service.dart';
 import '../widgets/app_error_banner.dart';
 import '../widgets/auth_text_field.dart';
+import 'login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+  final bool fromOnboarding;
+  const SignupScreen({super.key, this.fromOnboarding = false});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -56,6 +58,7 @@ class _SignupScreenState extends State<SignupScreen> {
     if (!mounted) return;
 
     if (success) {
+      PreferencesService.setHasSeenOnboarding(true);
       Navigator.of(context).popUntil((route) => route.isFirst);
     }
   }
@@ -135,7 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
           // App Logo
           Center(
             child: Image.asset(
-              'assets/tulip.png',
+              'assets/form.png',
               width: 78,
               height: 78,
               fit: BoxFit.contain,
@@ -317,7 +320,16 @@ class _SignupScreenState extends State<SignupScreen> {
               GestureDetector(
                 onTap: () {
                   authProvider.clearError();
-                  Navigator.pop(context);
+                  if (widget.fromOnboarding) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(fromOnboarding: true),
+                      ),
+                    );
+                  } else {
+                    Navigator.pop(context);
+                  }
                 },
                 child: Text(
                   'Log in',

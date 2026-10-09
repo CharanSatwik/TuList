@@ -1,6 +1,5 @@
 // File: lib/widgets/filter_bar.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
 
@@ -97,7 +96,7 @@ class FilterBar extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: GoogleFonts.poppins(
+          style: GoogleFonts.inter(
             fontSize: 12,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
             color: isSelected ? Colors.white : AppTheme.textSecondary,
@@ -148,7 +147,7 @@ class FilterBar extends StatelessWidget {
             ],
             Text(
               label,
-              style: GoogleFonts.poppins(
+              style: GoogleFonts.inter(
                 fontSize: 11,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
                 color: isSelected

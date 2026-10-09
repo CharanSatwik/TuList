@@ -1,7 +1,6 @@
 // File: lib/screens/home_screen.dart
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../models/task_model.dart';
 import '../providers/auth_provider.dart';

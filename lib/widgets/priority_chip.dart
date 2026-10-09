@@ -1,6 +1,5 @@
 // File: lib/widgets/priority_chip.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../theme/app_theme.dart';
 
 class PriorityChip extends StatelessWidget {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static const Color oliveGreen = Color(0xFF556B2F);
@@ -96,10 +95,9 @@ class AppTheme {
   ];
 
   static ThemeData get lightTheme {
-    final baseTextTheme = GoogleFonts.interTextTheme();
-
     return ThemeData(
       useMaterial3: true,
+      fontFamily: 'Inter',
       brightness: Brightness.light,
       primaryColor: oliveGreen,
       scaffoldBackgroundColor: scaffoldBackground,
@@ -112,42 +110,49 @@ class AppTheme {
         onSurface: textPrimary,
         error: deepMaroon,
       ),
-      textTheme: baseTextTheme.copyWith(
-        displayLarge: GoogleFonts.inter(
+      textTheme: const TextTheme(
+        displayLarge: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 30,
           fontWeight: FontWeight.w800,
           color: textPrimary,
           letterSpacing: -0.8,
         ),
-        displayMedium: GoogleFonts.inter(
+        displayMedium: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 24,
           fontWeight: FontWeight.w800,
           color: textPrimary,
           letterSpacing: -0.6,
         ),
-        titleLarge: GoogleFonts.inter(
+        titleLarge: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 20,
           fontWeight: FontWeight.w700,
           color: textPrimary,
           letterSpacing: -0.4,
         ),
-        titleMedium: GoogleFonts.inter(
+        titleMedium: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 16,
           fontWeight: FontWeight.w600,
           color: textPrimary,
           letterSpacing: -0.2,
         ),
-        bodyLarge: GoogleFonts.inter(
+        bodyLarge: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 15,
           fontWeight: FontWeight.w500,
           color: textPrimary,
         ),
-        bodyMedium: GoogleFonts.inter(
+        bodyMedium: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 13,
           fontWeight: FontWeight.w400,
           color: textSecondary,
         ),
-        labelLarge: GoogleFonts.inter(
+        labelLarge: TextStyle(
+          fontFamily: 'Inter',
           fontSize: 14,
           fontWeight: FontWeight.w600,
           color: pureWhite,
@@ -167,16 +172,69 @@ class AppTheme {
         elevation: 6,
         shape: CircleBorder(),
       ),
-      snackBarTheme: SnackBarThemeData(
+      snackBarTheme: const SnackBarThemeData(
         backgroundColor: textPrimary,
-        contentTextStyle: GoogleFonts.inter(
+        contentTextStyle: TextStyle(
+          fontFamily: 'Inter',
           color: pureWhite,
           fontSize: 13,
           fontWeight: FontWeight.w500,
         ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
         behavior: SnackBarBehavior.floating,
       ),
     );
   }
 }
+
+/// Local typography helper using only pre-bundled Inter font files from assets.
+/// Zero network requests or Google Server font fetching.
+class AppFonts {
+  static const String fontFamily = 'Inter';
+
+  static TextStyle inter({
+    TextStyle? textStyle,
+    Color? color,
+    Color? backgroundColor,
+    double? fontSize,
+    FontWeight? fontWeight,
+    FontStyle? fontStyle,
+    double? letterSpacing,
+    double? wordSpacing,
+    TextBaseline? textBaseline,
+    double? height,
+    Locale? locale,
+    Paint? foreground,
+    Paint? background,
+    List<Shadow>? shadows,
+    TextDecoration? decoration,
+    Color? decorationColor,
+    TextDecorationStyle? decorationStyle,
+    double? decorationThickness,
+  }) {
+    final style = TextStyle(
+      fontFamily: fontFamily,
+      color: color,
+      backgroundColor: backgroundColor,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      fontStyle: fontStyle,
+      letterSpacing: letterSpacing,
+      wordSpacing: wordSpacing,
+      textBaseline: textBaseline,
+      height: height,
+      locale: locale,
+      foreground: foreground,
+      background: background,
+      shadows: shadows,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+    );
+    return textStyle != null ? textStyle.merge(style) : style;
+  }
+}
+
+/// Alias mapping GoogleFonts to local AppFonts so no remote font calls are ever made
+typedef GoogleFonts = AppFonts;

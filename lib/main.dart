@@ -136,7 +136,7 @@ class _AuthGateState extends State<AuthGate> {
           backgroundColor: AppTheme.scaffoldBackground,
           body: Center(
             child: Image.asset(
-              'assets/tulip.png',
+              'assets/check-list.png',
               width: 90,
               height: 90,
               fit: BoxFit.contain,

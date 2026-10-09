@@ -1,17 +1,18 @@
 // File: lib/screens/login_screen.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
 import '../utils/validators.dart';
 import '../widgets/app_error_banner.dart';
+import '../services/preferences_service.dart';
 import '../widgets/auth_text_field.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  final bool fromOnboarding;
+  const LoginScreen({super.key, this.fromOnboarding = false});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -42,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
 
     if (success) {
+      PreferencesService.setHasSeenOnboarding(true);
       Navigator.of(context).popUntil((route) => route.isFirst);
     }
   }
@@ -116,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
           // App Logo
           Center(
             child: Image.asset(
-              'assets/tulip.png',
+              'assets/check-box.png',
               width: 78,
               height: 78,
               fit: BoxFit.contain,
@@ -269,12 +271,21 @@ class _LoginScreenState extends State<LoginScreen> {
               GestureDetector(
                 onTap: () {
                   authProvider.clearError();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignupScreen(),
-                    ),
-                  );
+                  if (widget.fromOnboarding) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignupScreen(fromOnboarding: true),
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SignupScreen(fromOnboarding: false),
+                      ),
+                    );
+                  }
                 },
                 child: Text(
                   'Get started!',

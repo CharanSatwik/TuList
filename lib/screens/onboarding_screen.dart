@@ -1,7 +1,5 @@
 // File: lib/screens/onboarding_screen.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../services/preferences_service.dart';
 import '../theme/app_theme.dart';
 import '../utils/responsive.dart';
 import 'login_screen.dart';
@@ -12,26 +10,20 @@ class OnboardingScreen extends StatelessWidget {
 
   const OnboardingScreen({super.key, this.onComplete});
 
-  Future<void> _handleGetStarted(BuildContext context) async {
-    await PreferencesService.setHasSeenOnboarding(true);
-    onComplete?.call();
-    if (!context.mounted) return;
+  void _handleGetStarted(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const SignupScreen(),
+        builder: (context) => const SignupScreen(fromOnboarding: true),
       ),
     );
   }
 
-  Future<void> _handleLogIn(BuildContext context) async {
-    await PreferencesService.setHasSeenOnboarding(true);
-    onComplete?.call();
-    if (!context.mounted) return;
+  void _handleLogIn(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
+        builder: (context) => const LoginScreen(fromOnboarding: true),
       ),
     );
   }
@@ -60,9 +52,9 @@ class OnboardingScreen extends StatelessWidget {
                 children: [
                   const Spacer(),
 
-                  // Hero Tulip Logo
+                  // Hero Logo
                   Image.asset(
-                    'assets/tulip.png',
+                    'assets/check-list.png',
                     width: 108,
                     height: 108,
                     fit: BoxFit.contain,
