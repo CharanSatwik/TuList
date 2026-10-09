@@ -6,7 +6,7 @@ TuList is a clean, modern task management mobile app built with Flutter and Fire
 
 ## What It Does
 
-- **Account & Verification**: Sign up and log in securely with email and password, with built-in email verification.
+- **Account & Authentication**: Sign up and log in securely with email and password.
 - **Task Organization**: Create, edit, and delete tasks with titles, notes, due dates, due times, and priority levels (Low, Medium, High).
 - **Smart Grouping**: Automatically organizes tasks into Today, Tomorrow, This Week, and Later.
 - **Search & Filters**: Quickly search by task name or filter by status and priority.
@@ -32,10 +32,9 @@ lib/
 ├── models/
 │   └── task_model.dart                # Task data model with Firestore serialization
 ├── providers/
-│   ├── auth_provider.dart             # Authentication state management and verification workflows
+│   ├── auth_provider.dart             # Authentication state management
 │   └── task_provider.dart             # Task filtering, sorting, and state logic
 ├── screens/
-│   ├── email_verification_screen.dart # Interactive email verification and auto check
 │   ├── home_screen.dart               # Main task list dashboard and search
 │   ├── login_screen.dart              # User sign in interface and navigation
 │   ├── onboarding_screen.dart         # Introductory walkthrough screens for new users

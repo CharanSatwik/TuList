@@ -228,10 +228,14 @@ class _LoginScreenState extends State<LoginScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primary,
                 foregroundColor: AppTheme.pureWhite,
+                splashFactory: NoSplash.splashFactory,
                 elevation: 0,
+                shadowColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
+              ).copyWith(
+                overlayColor: const WidgetStatePropertyAll(Colors.transparent),
               ),
               child: authProvider.isLoading
                   ? const SizedBox(

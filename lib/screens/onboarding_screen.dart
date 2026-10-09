@@ -139,10 +139,14 @@ class OnboardingScreen extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppTheme.primary,
                         foregroundColor: AppTheme.pureWhite,
+                        splashFactory: NoSplash.splashFactory,
                         elevation: 0,
+                        shadowColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
+                      ).copyWith(
+                        overlayColor: const WidgetStatePropertyAll(Colors.transparent),
                       ),
                       child: Text(
                         'Get started',
@@ -165,6 +169,7 @@ class OnboardingScreen extends StatelessWidget {
                       onPressed: () => _handleLogIn(context),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: AppTheme.secondary,
+                        splashFactory: NoSplash.splashFactory,
                         side: BorderSide(
                           color: AppTheme.secondary.withValues(alpha: 0.7),
                           width: 1.4,
@@ -173,6 +178,8 @@ class OnboardingScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),
                         ),
+                      ).copyWith(
+                        overlayColor: const WidgetStatePropertyAll(Colors.transparent),
                       ),
                       child: Text(
                         'Log in',

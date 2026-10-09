@@ -42,8 +42,6 @@ class AuthService {
             password: password,
           )
           .timeout(const Duration(seconds: 15));
-      // Fire-and-forget: send verification email without blocking signup
-      credential.user?.sendEmailVerification().catchError((_) {});
       return credential;
     } on TimeoutException {
       throw 'Connection timed out. Please check your internet connection.';

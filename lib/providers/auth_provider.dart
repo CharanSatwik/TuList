@@ -33,7 +33,7 @@ class AuthProvider extends ChangeNotifier {
 
   User? get currentUser => _currentUser;
   bool get isAuthenticated => _currentUser != null;
-  bool get isEmailVerified => _currentUser?.emailVerified ?? false;
+  bool get isEmailVerified => true;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
@@ -72,19 +72,7 @@ class AuthProvider extends ChangeNotifier {
 
     try {
       await _authService.signIn(email: email, password: password);
-      await _authService.currentUser?.reload();
       _currentUser = _authService.currentUser;
-
-      if (_currentUser != null && !_currentUser!.emailVerified) {
-        _errorMessage =
-            'Please verify your email before logging in. Check your inbox for the verification link.';
-        _isLoading = false;
-        await _authService.signOut();
-        _currentUser = null;
-        notifyListeners();
-        return false;
-      }
-
       _isLoading = false;
       notifyListeners();
       return true;

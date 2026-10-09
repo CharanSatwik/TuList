@@ -9,7 +9,6 @@ import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
 import 'providers/task_provider.dart';
 import 'services/preferences_service.dart';
-import 'screens/email_verification_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/onboarding_screen.dart';
@@ -105,11 +104,6 @@ class _AuthGateState extends State<AuthGate> {
       if (!_hasSeenOnboarding) {
         _hasSeenOnboarding = true;
         PreferencesService.setHasSeenOnboarding(true);
-      }
-
-      // Check if email is verified
-      if (!authProvider.isEmailVerified) {
-        return const EmailVerificationScreen();
       }
 
       if (_lastUid != user.uid) {

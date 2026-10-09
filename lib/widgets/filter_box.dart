@@ -506,10 +506,14 @@ class _FilterBottomSheetContentState extends State<_FilterBottomSheetContent> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.oliveGreen,
                 foregroundColor: AppTheme.pureWhite,
+                splashFactory: NoSplash.splashFactory,
                 elevation: 0,
+                shadowColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
+              ).copyWith(
+                overlayColor: const WidgetStatePropertyAll(Colors.transparent),
               ),
               child: Text(
                 'Apply Filters',

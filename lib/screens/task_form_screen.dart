@@ -458,10 +458,14 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.primary,
                     foregroundColor: AppTheme.pureWhite,
+                    splashFactory: NoSplash.splashFactory,
                     elevation: 0,
+                    shadowColor: Colors.transparent,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
+                  ).copyWith(
+                    overlayColor: const WidgetStatePropertyAll(Colors.transparent),
                   ),
                   child: _isSaving
                       ? const SizedBox(
@@ -506,6 +510,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                       ),
                     ),
                     style: OutlinedButton.styleFrom(
+                      splashFactory: NoSplash.splashFactory,
                       side: BorderSide(
                         color: AppTheme.secondary.withValues(alpha: 0.7),
                         width: 1.4,
@@ -513,6 +518,8 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
+                    ).copyWith(
+                      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
                     ),
                   ),
                 ),

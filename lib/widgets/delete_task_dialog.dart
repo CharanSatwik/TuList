@@ -59,7 +59,10 @@ Future<bool> showDeleteTaskDialog(
         TextButton(
           onPressed: () => Navigator.pop(ctx, false),
           style: TextButton.styleFrom(
+            splashFactory: NoSplash.splashFactory,
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          ).copyWith(
+            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
           child: Text(
             'Cancel',
@@ -75,11 +78,15 @@ Future<bool> showDeleteTaskDialog(
           style: ElevatedButton.styleFrom(
             backgroundColor: AppTheme.secondary,
             foregroundColor: AppTheme.pureWhite,
+            splashFactory: NoSplash.splashFactory,
             elevation: 0,
+            shadowColor: Colors.transparent,
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
+          ).copyWith(
+            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
           ),
           child: Text(
             'Delete',
