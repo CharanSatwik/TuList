@@ -1,19 +1,27 @@
 # TuList
 
-A modern Flutter task management application featuring real-time Cloud Firestore synchronization, Firebase Authentication with email verification, offline caching, and intuitive task prioritization.
+TuList is a clean, modern task management mobile app built with Flutter and Firebase. It helps users organize daily tasks, set priorities, and keep everything synchronized across devices in real time with offline support.
 
 ---
 
-## Features & Visual Design
+## What It Does
 
-- **Primary Indigo & Lavender Aesthetic**: Indigo `#6C63FF` accents, curved lavender header, and Poppins typography.
-- **Card Design**: Soft shadows, 18px rounded corners, circular checkboxes, and colored priority tags (`Low`, `Medium`, `High`).
-- **Swipe to Delete**: Swipe left reveals a red circular delete button with an undo snackbar.
-- **Task Categorization**: Auto-grouped into **Today**, **Tomorrow**, **This week**, and **Later**.
-- **Multi-criteria Filtering**: Client-side filtering combining Status (`All`, `Incomplete`, `Completed`) and Priority (`All`, `Low`, `Medium`, `High`) while maintaining ascending due-date sort.
-- **Task Management**: Create and edit tasks via a centered floating action button with title validation, multiline notes, date/time pickers, and segmented priority selection.
-- **Offline Persistence**: Cloud Firestore offline cache enabled.
-- **Responsive Layout**: Inset handling with `MediaQuery.padding` (no `SafeArea`).
+- **Account & Verification**: Sign up and log in securely with email and password, with built-in email verification.
+- **Task Organization**: Create, edit, and delete tasks with titles, notes, due dates, due times, and priority levels (Low, Medium, High).
+- **Smart Grouping**: Automatically organizes tasks into Today, Tomorrow, This Week, and Later.
+- **Search & Filters**: Quickly search by task name or filter by status and priority.
+- **Real-Time Sync & Offline Mode**: Syncs with Firebase Firestore instantly, while keeping tasks accessible even when offline.
+- **Modern Design**: Earthy olive green and deep maroon visual theme with smooth micro-interactions.
+
+---
+
+## Tech Stack
+
+- **Framework**: Flutter (Dart)
+- **Backend**: Firebase Authentication, Cloud Firestore
+- **State Management**: Provider
+- **Local Storage**: SharedPreferences, Firestore Offline Cache
+- **Configuration**: flutter_dotenv (.env)
 
 ---
 
@@ -57,48 +65,51 @@ lib/
 
 ---
 
-## Setup Steps
+## Quick Start
 
-### 1. Prerequisites
-- Flutter SDK `^3.11.5` or higher
-- Dart SDK installed
-- Android SDK (or Xcode for iOS)
+### 1. Clone the project
+```bash
+git clone https://github.com/CharanSatwik/TuList.git
+cd TuList
+```
 
-### 2. Environment Configuration
-Copy `.env.example` to `.env` and fill in your Firebase credentials:
+### 2. Set up environment variables
+Copy the example environment file and add your Firebase credentials:
 ```bash
 cp .env.example .env
 ```
 
-### 3. Install Dependencies
+Fill in your Firebase keys inside `.env`:
+```env
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_STORAGE_BUCKET=your-project-id.firebasestorage.app
+FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+
+FIREBASE_ANDROID_API_KEY=your-android-api-key
+FIREBASE_ANDROID_APP_ID=your-android-app-id
+
+FIREBASE_IOS_API_KEY=your-ios-api-key
+FIREBASE_IOS_APP_ID=your-ios-app-id
+FIREBASE_IOS_BUNDLE_ID=com.example.taskManagementApp
+```
+
+### 3. Install packages
 ```bash
 flutter pub get
 ```
 
-### 3. Run Analysis & Tests
+### 4. Run the app
 ```bash
-flutter test
-flutter analyze
+flutter run
 ```
 
 ---
 
-## Firebase Configuration Instructions
+## Firebase Setup
 
-### 1. Create a Firebase Project
-1. Navigate to the [Firebase Console](https://console.firebase.google.com/).
-2. Click **Add project** and follow the on-screen steps.
-
-### 2. Enable Authentication
-1. Under **Build**, select **Authentication**.
-2. Click **Get Started**.
-3. Under the **Sign-in method** tab, enable **Email/Password**.
-
-### 3. Enable Cloud Firestore
-1. Under **Build**, select **Firestore Database**.
-2. Click **Create database** (start in Test mode or configure production rules).
-3. Set up the security rules for the path `users/{uid}/tasks/{taskId}`:
-
+1. Create a project in the [Firebase Console](https://console.firebase.google.com/).
+2. Enable **Email/Password** under **Authentication > Sign-in method**.
+3. Create a **Firestore Database** and add these security rules:
 ```javascript
 rules_version = '2';
 service cloud.firestore {
@@ -109,53 +120,14 @@ service cloud.firestore {
   }
 }
 ```
-
-### 4. Configure FlutterFire CLI
-1. Install the Firebase CLI:
-   ```bash
-   npm install -g firebase-tools
-   ```
-2. Log in to Firebase:
-   ```bash
-   firebase login
-   ```
-3. Install FlutterFire CLI:
-   ```bash
-   dart pub global activate flutterfire_cli
-   ```
-4. Run configuration in the project root:
-   ```bash
-   flutterfire configure
-   ```
-   Follow the prompts to select your project and target platforms (Android, iOS, Web). This updates `lib/firebase_options.dart` and generates native configuration files (`google-services.json` / `GoogleService-Info.plist`).
+4. Copy your project keys into `.env`.
 
 ---
 
-## Running the App
+## Build for Release
 
-```bash
-# Debug run
-flutter run
-```
-
----
-
-## Release APK Build Commands
-
-### 1. Build a Universal Release APK
+To generate an Android release APK:
 ```bash
 flutter build apk --release
 ```
-*Output location:* `build/app/outputs/flutter-apk/app-release.apk`
-
-### 2. Build Split-per-ABI APKs (Smaller file size for distribution)
-```bash
-flutter build apk --release --split-per-abi
-```
-*Output location:* `build/app/outputs/flutter-apk/app-<abi>-release.apk`
-
-### 3. Build Android App Bundle (for Google Play submission)
-```bash
-flutter build appbundle --release
-```
-*Output location:* `build/app/outputs/bundle/release/app-release.aab`
+The output file will be located at `build/app/outputs/flutter-apk/app-release.apk`.
