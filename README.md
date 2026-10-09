@@ -21,15 +21,38 @@ A modern Flutter task management application featuring real-time Cloud Firestore
 
 ```
 lib/
-├── models/               # Data structures and Firestore serialization models
-├── providers/            # State management for authentication and tasks
-├── screens/              # UI screens and primary navigation flows
-├── services/             # Backend communication with Firebase and storage
-├── theme/                # Color palette, typography, and visual styling
-├── utils/                # Helper functions, date formatters, and validators
-├── widgets/              # Reusable UI components and custom dialogs
-├── firebase_options.dart # Platform-specific Firebase configuration and credentials
-└── main.dart             # Application entry point and root providers
+├── models/
+│   └── task_model.dart                # Task data model with Firestore serialization
+├── providers/
+│   ├── auth_provider.dart             # Authentication state management and verification workflows
+│   └── task_provider.dart             # Task filtering, sorting, and state logic
+├── screens/
+│   ├── email_verification_screen.dart # Interactive email verification and auto check
+│   ├── home_screen.dart               # Main task list dashboard and search
+│   ├── login_screen.dart              # User sign in interface and navigation
+│   ├── onboarding_screen.dart         # Introductory walkthrough screens for new users
+│   ├── signup_screen.dart             # User account creation and input validation
+│   └── task_form_screen.dart          # Create and edit task modal screen
+├── services/
+│   ├── auth_service.dart              # Firebase authentication operations and error handling
+│   ├── preferences_service.dart       # Local persistent storage using shared preferences
+│   └── task_service.dart              # Firestore CRUD operations and offline cache
+├── theme/
+│   └── app_theme.dart                 # Color scheme, light theme, and typography
+├── utils/
+│   ├── date_helpers.dart              # Date formatting and task timeline helpers
+│   ├── responsive.dart                # Screen breakpoint utilities and layout helpers
+│   └── validators.dart                # Form input text validation helper rules
+├── widgets/
+│   ├── app_error_banner.dart          # Animated error and status alert banner
+│   ├── auth_text_field.dart           # Custom text field with input styling
+│   ├── delete_task_dialog.dart        # Confirmation dialog for deleting task items
+│   ├── filter_bar.dart                # Quick filter chips for task categories
+│   ├── filter_box.dart                # Advanced filtering and sorting modal sheet
+│   ├── priority_chip.dart             # Color-coded priority badges for tasks
+│   └── task_card.dart                 # Interactive task card with completion toggle
+├── firebase_options.dart              # Platform-specific Firebase configuration and credentials
+└── main.dart                          # Application entry point and root providers
 ```
 
 ---
